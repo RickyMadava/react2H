@@ -12,7 +12,7 @@ class App extends React.Component {
       { id: 3, nom: "Kiady Ranaivoarimanana" }
     ],
     compteur: 0,
-    nouveauClient: "aaaa"
+    nouveauClient: ""
   };
 
   handleClick = () => {
@@ -35,6 +35,16 @@ class App extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     //console.log(this.clientInput.current.value);
+
+    const id = new Date().getTime();
+    const nom = this.state.nouveauClient;
+
+    const client = { id: id, nom: nom };
+
+    const clients = this.state.clients.slice();
+    clients.push(client);
+
+    this.setState({ clients: clients, nouveauClient: "" });
   };
 
   handleChange = (event) => {
